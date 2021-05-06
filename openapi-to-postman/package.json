@@ -6,7 +6,6 @@
   "author": "Imapala",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.1",
     "openapi-to-postmanv2": "^2.6.0"
   },
   "scripts": {
