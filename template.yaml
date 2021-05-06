@@ -11,6 +11,11 @@ Globals:
     Timeout: 15
 
 Resources:
+  OpenApiToPostmanGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Open API to Postman API Gateway
+      StageName: Prod
   OpenApiToPostmanFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -22,20 +27,20 @@ Resources:
         OpenApiToPostman:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
+            RestApiId: !Ref OpenApiToPostmanGateway
             Path: /
             Method: get
             RequestParameters:
               - method.request.querystring.openapi:
                   Required: true
-                  Caching: true
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  OpenApiToPostmanApi:
-    Description: "API Gateway endpoint URL for Prod stage for OpenApiToPostman function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  OpenApiToPostmanGateway:
+    Description: "API Gateway endpoint URL for Prod stage for OpenApiToPostmanFunction"
+    Value: !Sub "https://${OpenApiToPostmanGateway}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
   OpenApiToPostmanFunction:
     Description: "OpenApiToPostmanFunction Lambda Function ARN"
     Value: !GetAtt OpenApiToPostmanFunction.Arn
