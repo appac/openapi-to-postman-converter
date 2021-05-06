@@ -1,0 +1,5 @@
+{
+  "queryStringParameters": {
+    "openapi": "https://docs.impala.travel/api/v1/projects/impala/booking-api/nodes/spec/openapi.seller.yaml"
+  }
+}
