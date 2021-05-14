@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "open-api-postman-coverter"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1qv1zlkpzc1uw"
+s3_prefix = "open-api-postman-coverter"
+region = "eu-central-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
